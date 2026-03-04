@@ -330,24 +330,34 @@
 
         .card {
             position: sticky;
-            top: 10vh;
+            top: 15vh;
             width: 100%;
-            height: 70vh;
+            height: 60vh;
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(30px) saturate(180%);
             -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border-radius: 30px;
+            border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Centered since image is gone */
             text-align: center;
-            /* Balanced look for full width */
             padding: 5vw;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
             transform-origin: top center;
             overflow: hidden;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+            pointer-events: none;
         }
 
         /* Adjust stack positioning */
@@ -437,17 +447,15 @@
 
         /* 5. 3D Footer Typography */
         .footer-sec {
-            height: 140vh;
+            height: 160vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             perspective: 1200px;
-            /* 3D Perspective */
-            background: var(--bg);
+            background: radial-gradient(circle at bottom, rgba(0, 255, 136, 0.05) 0%, transparent 70%);
             padding: 0 5vw;
             position: relative;
-
         }
 
         .footer-text {
@@ -455,13 +463,38 @@
             text-align: center;
             line-height: 0.9;
             transform-style: preserve-3d;
-            transform: rotateX(40deg) translateY(50px);
-            opacity: 0;
-            transform-origin: bottom center;
+            opacity: 1;
+            transform-origin: center center;
+            margin: 0 auto;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            perspective: 1000px;
+            position: relative;
+            z-index: 10;
         }
 
         .footer-text span {
             color: var(--accent);
+        }
+
+        .contact-label {
+            font-size: 1rem;
+            letter-spacing: 12px;
+            color: var(--accent);
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .contact-description {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 3rem auto 6rem auto;
+            opacity: 0.5;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
         }
 
         .contact-btn-wrapper {
@@ -511,17 +544,17 @@
         /* 6. Contact Form System */
         .contact-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 1000px;
             margin-top: 5vh;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            padding: 40px;
-            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            padding: 80px 60px;
+            border-radius: 50px;
             transform-style: preserve-3d;
-            transform: translateZ(30px) perspective(1000px);
-            transition: box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+            transform: translateZ(30px) perspective(1500px);
+            transition: box-shadow 0.6s ease, border-color 0.6s ease, background 0.6s ease;
         }
 
         .contact-container:hover {
@@ -558,31 +591,31 @@
         .input-group input,
         .input-group textarea {
             width: 100%;
-            padding: 15px 10px;
-            font-size: 1.2rem;
+            padding: 20px 25px;
+            font-size: 1rem;
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             outline: none;
-            background: rgba(255, 255, 255, 0.05);
-            /* Slight fill for visibility */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             font-family: 'Inter', sans-serif;
-            transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             z-index: 1;
         }
 
         .input-group textarea {
             resize: vertical;
-            min-height: 80px;
+            min-height: 120px;
         }
 
         .input-group input:focus,
         .input-group textarea:focus {
-            border-color: transparent;
-            background: rgba(0, 255, 136, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
-            transform: translateY(-4px);
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
         }
 
         /* Auto-hide default cursor text styles so it doesn't conflict with custom cursor */
@@ -593,13 +626,14 @@
 
         .input-group label {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.5);
+            top: 20px;
+            left: 25px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.4);
             pointer-events: none;
-            transition: 0.3s ease all;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             font-family: 'Inter', sans-serif;
+            z-index: 2;
         }
 
         /* Label float animation */
@@ -607,10 +641,13 @@
         .input-group input:not(:placeholder-shown)~label,
         .input-group textarea:focus~label,
         .input-group textarea:not(:placeholder-shown)~label {
-            top: -25px;
-            left: 0;
-            font-size: 0.8rem;
+            top: -12px;
+            left: 15px;
+            font-size: 0.75rem;
             color: var(--accent);
+            background: var(--bg);
+            padding: 0 10px;
+            border-radius: 4px;
         }
 
         .submit-wrapper {
@@ -618,6 +655,59 @@
             justify-content: flex-end;
             margin-top: 20px;
             perspective: 500px;
+        }
+
+        /* --- FOOTER BOTTOM --- */
+        .footer-bottom {
+            margin-top: 10vh;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .social-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            transition: opacity 0.4s ease, color 0.4s ease;
+        }
+
+        .social-link:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .footer-copy {
+            font-size: 0.7rem;
+            opacity: 0.4;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding-bottom: 12vh;
+            }
+
+            .footer-socials {
+                justify-content: center;
+                gap: 1.5rem;
+            }
         }
 
         /* --- NAVIGATION --- */
@@ -798,12 +888,19 @@
         html.light-mode .input-group input,
         html.light-mode .input-group textarea {
             color: #111;
-            border-color: rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.7);
+            border-color: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         html.light-mode .input-group label {
-            color: rgba(0, 0, 0, 0.6);
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        html.light-mode .input-group input:focus~label,
+        html.light-mode .input-group input:not(:placeholder-shown)~label,
+        html.light-mode .input-group textarea:focus~label,
+        html.light-mode .input-group textarea:not(:placeholder-shown)~label {
+            background: #e5e5e5;
         }
 
         html.light-mode .hero h1 {
@@ -1038,7 +1135,7 @@
                                 src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg"
                                 class="sw-icon" alt="After Effects"> After Effects</span>
                         <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/0/07/Adobe_Animate_CC_icon_%282020%29.svg"
+                                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Adobe_Animate_icon.svg"
                                 class="sw-icon" alt="Animate CC"> Animate CC</span>
                     </div>
                 </div>
@@ -1054,7 +1151,10 @@
 
         <!-- 4. 3D Scroll Perspective Footer -->
         <section class="footer-sec interactable-area" id="contact">
+            <p class="contact-label split-chars">GET IN TOUCH</p>
             <h1 class="footer-text">LET'S BUILD<br><span>THE FUTURE</span></h1>
+            <p class="contact-description split-lines">Have a project in mind or just want to say hi? Feel free to reach
+                out using the form below.</p>
 
             <div class="contact-container">
                 <form id="contact-form" autocomplete="off">
@@ -1074,6 +1174,18 @@
                         <button type="submit" class="contact-btn magnetic-btn">SEND INQUIRY</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-socials">
+                    <a href="#" class="social-link magnetic-btn">INSTAGRAM</a>
+                    <a href="#" class="social-link magnetic-btn">FACEBOOK</a>
+                    <a href="#" class="social-link magnetic-btn">YOUTUBE</a>
+                    <a href="#" class="social-link magnetic-btn">LINKEDIN</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2024 RAMAN. ALL RIGHTS RESERVED.
+                </div>
             </div>
         </section>
     </main>
@@ -1238,95 +1350,9 @@
                     });
                 }
             });
-
-            // --- STACKING CARDS & REVEALS ---
-            const cards = gsap.utils.toArray('.card-stack');
-            cards.forEach((card, index) => {
-                // Intro text animation for cards
-                const chars = card.querySelectorAll('.char');
-                const lines = card.querySelectorAll('.line');
-
-                gsap.from([chars, lines], {
-                    y: 50,
-                    opacity: 0,
-                    stagger: 0.02,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%',
-                    }
-                });
-
-                // Inner Image Parallax
-                gsap.to(card.querySelector('.card-img'), {
-                    yPercent: 20,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: true
-                    }
-                });
-
-                // Scale down previous cards
-                if (index === cards.length - 1) return;
-
-                gsap.to(card, {
-                    scale: 0.9,
-                    opacity: 0.6,
-                    y: -20, // push up slightly
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 10%',
-                        end: `+=${window.innerHeight}`,
-                        scrub: true
-                    }
-                });
-            });
-
-            // --- LIST SECTION CHARACTER REVEAL ---
-            gsap.utils.toArray('.list-item h2 .char').forEach((char, i) => {
-                gsap.from(char, {
-                    y: 40,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: 'back.out(1.5)',
-                    scrollTrigger: {
-                        trigger: char.closest('.list-item'),
-                        start: 'top 85%'
-                    },
-                    delay: (i % 15) * 0.03
-                });
-            });
-
-            // --- 3D FOOTER REVEAL ---
-            const footerTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.footer-sec',
-                    start: 'top 80%',
-                    end: 'top 20%', /* Triggers much faster during scrolling */
-                    scrub: 1
-                }
-            });
-
-            footerTl.to('.footer-text', {
-                rotateX: 0,
-                y: 0,
-                opacity: 1,
-                scale: 1
-            })
-                .from('.input-group, .submit-wrapper', {
-                    y: 30,
-                    opacity: 0,
-                    stagger: 0.15,
-                    ease: 'power3.out'
-                }, "-=0.3");
         }
 
-
-        // --- CURSOR AND MAGNETIC BUTTON LOGIC ---
+        // --- GLOBAL UTILITIES ---
         const cursor = document.querySelector('.cursor');
         const follower = document.querySelector('.cursor-follower');
         const interactables = document.querySelectorAll('.interactable-area, .contact-btn, .list-item');
@@ -1335,7 +1361,6 @@
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
         let followerX = 0, followerY = 0;
-        let imgX = 0, imgY = 0;
 
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
@@ -1357,75 +1382,135 @@
             el.addEventListener('mouseleave', () => follower.classList.remove('active'));
         });
 
-        // Magnetic Button Effect
         magneticBtns.forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-
-                // Move button slightly towards mouse
-                gsap.to(btn, {
-                    x: x * 0.4,
-                    y: y * 0.4,
-                    duration: 0.6,
-                    ease: "power3.out"
-                });
-                // Small magnetic pull on the follower circle
-                gsap.to(follower, {
-                    scale: 1.5,
-                    duration: 0.3
-                });
+                const xPct = (e.clientX - rect.left - rect.width / 2);
+                const yPct = (e.clientY - rect.top - rect.height / 2);
+                gsap.to(btn, { x: xPct * 0.4, y: yPct * 0.4, duration: 0.6, ease: "power3.out" });
+                gsap.to(follower, { scale: 1.5, duration: 0.3 });
             });
-
             btn.addEventListener('mouseleave', () => {
-                gsap.to(btn, {
-                    x: 0,
-                    y: 0,
-                    duration: 0.6,
-                    ease: "elastic.out(1, 0.3)"
-                });
-                gsap.to(follower, {
-                    scale: 1,
-                    duration: 0.3
-                });
+                gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+                gsap.to(follower, { scale: 1, duration: 0.3 });
             });
         });
 
-
-        // 3D Tilt for Contact Container
         const contactCard = document.querySelector('.contact-container');
         if (contactCard) {
             contactCard.addEventListener('mousemove', (e) => {
                 const rect = contactCard.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const xPct = (x / rect.width - 0.5) * 2; // -1 to +1
-                const yPct = (y / rect.height - 0.5) * 2;
-
-                gsap.to(contactCard, {
-                    rotateX: yPct * -8, // Max 8 degrees tilt
-                    rotateY: xPct * 8,
-                    ease: "power2.out",
-                    duration: 0.5
-                });
+                const xPct = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                const yPct = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                gsap.to(contactCard, { rotateX: yPct * -8, rotateY: xPct * 8, ease: "power2.out", duration: 0.5 });
             });
-
             contactCard.addEventListener('mouseleave', () => {
-                gsap.to(contactCard, {
-                    rotateX: 0,
-                    rotateY: 0,
-                    ease: "elastic.out(1, 0.3)",
-                    duration: 1.5
-                });
+                gsap.to(contactCard, { rotateX: 0, rotateY: 0, ease: "elastic.out(1, 0.3)", duration: 1.5 });
             });
         }
 
-        // --- POPULAR SCROLL REVEAL ANIMATIONS ---
+        // Add this back to initScrollAnimations
+        const originalInit = initScrollAnimations;
+        initScrollAnimations = function () {
+            originalInit();
 
-        // Reveal Project Items on Scroll
-        gsap.utils.toArray('.list-item').forEach((item, i) => {
+            // --- PREMIUM STACKING CARD ANIMATION ---
+            const cards = gsap.utils.toArray('.card');
+            cards.forEach((card, i) => {
+                if (i === cards.length - 1) return;
+                const nextCard = cards[i + 1];
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: nextCard,
+                        start: "top 85%",
+                        end: "top 15%",
+                        scrub: true,
+                    },
+                    scale: 0.9 - (i * 0.02),
+                    opacity: 0.3,
+                    filter: "blur(10px)",
+                    y: -50,
+                    ease: "none"
+                });
+            });
+
+            cards.forEach((card) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 95%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 100,
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 1.2,
+                    ease: "expo.out"
+                });
+            });
+
+            // --- 3D FOOTER REVEAL ---
+            const footerText = document.querySelector('.footer-text');
+            if (footerText) {
+                new SplitType(footerText, { types: 'chars' });
+                const footerChars = footerText.querySelectorAll('.char');
+
+                // Ensure parent is visible
+                gsap.set(footerText, { autoAlpha: 1 });
+
+                const footerTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.footer-sec',
+                        start: 'top 90%',
+                        end: 'bottom bottom',
+                        scrub: 1
+                    }
+                });
+
+                footerTl.from('.contact-label', {
+                    y: 20,
+                    autoAlpha: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                })
+                    .from(footerChars, {
+                        y: 100,
+                        rotateX: -90,
+                        autoAlpha: 0,
+                        stagger: 0.05,
+                        ease: "power4.out"
+                    }, "-=0.4")
+                    .from('.contact-description', {
+                        y: 30,
+                        opacity: 0,
+                        duration: 1,
+                        ease: "power3.out"
+                    }, "-=0.6")
+                    .from('.contact-container', {
+                        y: 100,
+                        opacity: 0,
+                        scale: 0.9,
+                        duration: 1,
+                        ease: "power2.out"
+                    }, "-=0.5")
+                    .from('.input-group, .submit-wrapper', {
+                        y: 30,
+                        opacity: 0,
+                        stagger: 0.1,
+                        ease: 'power3.out'
+                    }, "-=0.8")
+                    .from('.footer-bottom > *', {
+                        y: 50,
+                        opacity: 0,
+                        stagger: 0.2,
+                        duration: 1,
+                        ease: "power4.out"
+                    }, "-=0.5");
+            }
+        }
+
+        // --- POPULAR SCROLL REVEAL ANIMATIONS (LIST ITEMS) ---
+        gsap.utils.toArray('.list-item').forEach((item) => {
             gsap.from(item, {
                 scrollTrigger: {
                     trigger: item,
@@ -1437,47 +1522,6 @@
                 duration: 0.8,
                 ease: "power3.out"
             });
-        });
-
-        // Reveal Cards on Scroll (Beyond the Sticky logic)
-        gsap.utils.toArray('.card').forEach((card, i) => {
-            gsap.from(card.querySelector('.card-content'), {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 70%",
-                    toggleActions: "play none none reverse"
-                },
-                x: -50,
-                opacity: 0,
-                duration: 1,
-                delay: 0.2,
-                ease: "power3.out"
-            });
-            gsap.from(card.querySelector('.card-img-wrapper'), {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 70%",
-                    toggleActions: "play none none reverse"
-                },
-                x: 50,
-                opacity: 0,
-                duration: 1,
-                delay: 0.4,
-                ease: "power3.out"
-            });
-        });
-
-        // Contact Form Stagger Reveal
-        gsap.from(".input-group", {
-            scrollTrigger: {
-                trigger: ".contact-container",
-                start: "top 80%"
-            },
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: "power2.out"
         });
 
         // --- THEME TOGGLE LOGIC ---
