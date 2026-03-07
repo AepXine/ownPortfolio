@@ -215,6 +215,51 @@
             opacity: 0.7;
         }
 
+        /* --- ABOUT SECTION --- */
+        .about-section {
+            padding: 15vh 5vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .about-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 6vw, 6rem);
+            color: var(--text-light);
+            margin-bottom: 2vh;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .about-text {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+            line-height: 1.6;
+            color: #bbb;
+            max-width: 900px;
+        }
+
+        .about-text .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         /* --- MARQUEE --- */
         .marquee-wrapper {
             width: 100%;
@@ -391,6 +436,69 @@
             font-size: 1.2rem;
             line-height: 1.6;
             color: #bbb;
+        }
+
+        /* --- PROGRESS BARS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 40px;
+            text-align: left;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .skill-item {
+            width: 100%;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: #ddd;
+            font-weight: 500;
+        }
+
+        .skill-info .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-info .sw-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .skill-info .skill-pct {
+            color: var(--accent);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            width: 0;
+            /* Animated by GSAP */
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+            position: relative;
         }
 
         .sw-item {
@@ -817,6 +925,19 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
+        html.light-mode .about-section {
+            background: rgba(40, 40, 40, 0.04);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        html.light-mode .about-header {
+            color: #111;
+        }
+
+        html.light-mode .about-text {
+            color: #555;
+        }
+
         html.light-mode .list-section {
             background: rgba(255, 255, 255, 0.4);
             border-color: rgba(255, 255, 255, 0.3);
@@ -863,6 +984,15 @@
 
         html.light-mode .card p {
             color: #444;
+        }
+
+        html.light-mode .skill-info {
+            color: #333;
+        }
+
+        html.light-mode .progress-bar {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         html.light-mode .sw-item {
@@ -946,6 +1076,10 @@
                 text-align: center;
             }
 
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
             .list-item {
                 flex-direction: column;
                 align-items: flex-start;
@@ -991,6 +1125,7 @@
     <!-- Navigation Menu -->
     <nav class="nav-wrapper">
         <a href="#home" class="nav-link magnetic-btn interactable-area">Home</a>
+        <a href="#about" class="nav-link magnetic-btn interactable-area">About</a>
         <a href="#projects-list" class="nav-link magnetic-btn interactable-area">Projects</a>
         <a href="#expertise" class="nav-link magnetic-btn interactable-area">Expertise</a>
         <a href="#contact" class="nav-link magnetic-btn interactable-area">Contact</a>
@@ -1046,6 +1181,22 @@
             </div>
         </div>
 
+        <!-- About Section -->
+        <section class="about-section interactable-area" id="about">
+            <div class="about-content">
+                <h2 class="about-header split-chars">ABOUT ME</h2>
+                <div class="about-details">
+                    <p class="about-text split-lines">
+                        Hi, my name is <span class="highlight">Ramanpreet Singh</span> from <span
+                            class="highlight">Fatehgarh Sahib, Punjab</span> (Village Nalina Kalan).
+                        I have been working as a freelancer for <span class="highlight">2 years</span> with experience
+                        as a <span class="highlight">Video Editor</span> and <span class="highlight">Motion
+                            Designer.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- 2. Minimal Projects List -->
         <section class="list-section interactable-area" id="projects-list">
             <div class="list-header">RECENT PROJECTS</div>
@@ -1083,31 +1234,95 @@
             <div class="card card-stack">
                 <div class="card-content">
                     <h3 class="split-chars">01. LANGUAGES</h3>
-                    <div class="split-lines" style="line-height: 2.2;">
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                                class="sw-icon" alt="HTML5"> HTML</span>
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                                class="sw-icon" alt="CSS3"> CSS</span>
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                class="sw-icon" alt="JavaScript"> JavaScript</span>
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                                class="sw-icon" alt="React JS"> React JS</span>
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
-                                class="sw-icon" alt="Bootstrap"> Bootstrap</span>
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                                class="sw-icon" alt="PHP"> PHP</span>
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                                class="sw-icon" alt="MySQL"> MySQL</span>
-                        <span class="sw-item"><img
-                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg"
-                                class="sw-icon" alt="Laravel"> Laravel</span>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                        class="sw-icon" alt="HTML5"> HTML</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                        class="sw-icon" alt="CSS3"> CSS</span>
+                                <span class="skill-pct">81%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="81"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                        class="sw-icon" alt="JavaScript"> JavaScript</span>
+                                <span class="skill-pct">78%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="78"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                        class="sw-icon" alt="React JS"> React JS</span>
+                                <span class="skill-pct">70%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+                                        class="sw-icon" alt="Bootstrap"> Bootstrap</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                                        class="sw-icon" alt="PHP"> PHP</span>
+                                <span class="skill-pct">89%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="89"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                                        class="sw-icon" alt="MySQL"> MySQL</span>
+                                <span class="skill-pct">91%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="91"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg"
+                                        class="sw-icon" alt="Laravel"> Laravel</span>
+                                <span class="skill-pct">78%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="78"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1115,28 +1330,73 @@
             <div class="card card-stack">
                 <div class="card-content">
                     <h3 class="split-chars">02. SOFTWARE</h3>
-                    <div class="split-lines" style="line-height: 2.2;">
-                        <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg"
-                                class="sw-icon" alt="VS Code"> VS Code</span>
-                        <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg"
-                                class="sw-icon" alt="Photoshop"> Photoshop</span>
-                        <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg"
-                                class="sw-icon" alt="Premiere Pro"> Premiere Pro</span>
-                        <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg"
-                                class="sw-icon" alt="InDesign"> InDesign</span>
-                        <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg"
-                                class="sw-icon" alt="Illustrator"> Illustrator</span>
-                        <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg"
-                                class="sw-icon" alt="After Effects"> After Effects</span>
-                        <span class="sw-item"><img
-                                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Adobe_Animate_icon.svg"
-                                class="sw-icon" alt="Animate CC"> Animate CC</span>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg"
+                                        class="sw-icon" alt="Photoshop"> Photoshop</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg"
+                                        class="sw-icon" alt="Illustrator"> Illustrator</span>
+                                <span class="skill-pct">87%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="87"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg"
+                                        class="sw-icon" alt="After Effects"> After Effects</span>
+                                <span class="skill-pct">94%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="94"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg"
+                                        class="sw-icon" alt="Premiere Pro"> Premiere Pro</span>
+                                <span class="skill-pct">93%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="93"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg"
+                                        class="sw-icon" alt="InDesign"> InDesign</span>
+                                <span class="skill-pct">60%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="60"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name"><img
+                                        src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Adobe_Animate_icon.svg"
+                                        class="sw-icon" alt="Animate CC"> Animate CC</span>
+                                <span class="skill-pct">62%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="62"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1151,7 +1411,8 @@
 
         <!-- 4. 3D Scroll Perspective Footer -->
         <section class="footer-sec interactable-area" id="contact">
-            <h1 class="footer-text">GET <br><span>IN TOUCH</span></h1>
+            <p class="contact-label split-chars">GET IN TOUCH</p>
+            <h1 class="footer-text">LET'S BUILD<br><span>THE FUTURE</span></h1>
             <p class="contact-description split-lines">Have a project in mind or just want to say hi? Feel free to reach
                 out using the form below.</p>
 
@@ -1506,6 +1767,50 @@
                         ease: "power4.out"
                     }, "-=0.5");
             }
+
+            // --- ABOUT SECTION ANIMATION ---
+            const aboutSec = document.querySelector('.about-section');
+            if (aboutSec) {
+                const aboutTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.about-section',
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+
+                aboutTl.from('.about-header .char', {
+                    y: 100,
+                    opacity: 0,
+                    rotateX: -90,
+                    stagger: 0.05,
+                    duration: 1,
+                    ease: "power4.out"
+                })
+                    .from('.about-text .line', {
+                        y: 50,
+                        opacity: 0,
+                        stagger: 0.1,
+                        duration: 1.2,
+                        ease: "power3.out"
+                    }, "-=0.6");
+            }
+
+            // --- PROGRESS BAR ANIMATIONS ---
+            const progressFills = gsap.utils.toArray('.progress-fill');
+            progressFills.forEach(fill => {
+                const targetWidth = fill.getAttribute('data-progress') + "%";
+                gsap.to(fill, {
+                    width: targetWidth,
+                    duration: 1.5,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: fill,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
         }
 
         // --- POPULAR SCROLL REVEAL ANIMATIONS (LIST ITEMS) ---
@@ -1663,5 +1968,3 @@
 </body>
 
 </html>
-
-
